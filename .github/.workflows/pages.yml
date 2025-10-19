@@ -18,9 +18,9 @@ jobs:
 
       - name: Prepare site files
         run: |
-          mkdir -p public/assets/photo_studio
+          mkdir -p public/photo_studio
           # Copy the actual LFS binaries into the site artifact
-          cp -v photo_studio/skybox.ktx2 photo_studio/env.ktx2 photo_studio/irradiance.ktx2 public/assets/photo_studio
+          cp -v photo_studio/skybox.ktx2 photo_studio/env.ktx2 photo_studio/irradiance.ktx2 public/photo_studio
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
