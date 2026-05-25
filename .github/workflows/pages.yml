@@ -20,9 +20,18 @@ jobs:
         run: |
           mkdir -p public/photo_studio
           mkdir -p public/gizmo
-          # Copy the actual LFS binaries into the site artifact
+          mkdir -p public/flipbook-test/assets
+          # Copy the actual LFS binaries into the site artifact.
           cp -v photo_studio/skybox.ktx2 photo_studio/env.ktx2 photo_studio/irradiance.ktx2 public/photo_studio
           cp -v gizmo/gizmo.glb public/gizmo
+          # flipbook-test scene fixture — fetched at runtime by the
+          # scene-editor's `load_external_test_scene("flipbook-test")`
+          # wasm export against the production
+          # `MEDIA_BASE_URL_ADDITIONAL_ASSETS` URL. Ships project.json +
+          # every raster asset under flipbook-test/assets/. Add new
+          # scenes the same way: one extra `cp -v` per fixture.
+          cp -v flipbook-test/project.json public/flipbook-test/
+          cp -v flipbook-test/assets/*.png public/flipbook-test/assets/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
